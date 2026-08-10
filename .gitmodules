@@ -1,0 +1,3 @@
+[submodule "upstream-references/xserver-v0.2.0-archived"]
+	path = upstream-references/xserver-v0.2.0-archived
+	url = https://github.com/balena-labs-projects/xserver
