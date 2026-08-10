@@ -1,13 +1,13 @@
 # We need to switch from Balena's Docker images to generic ones
 
 # Docker preamble:
-#ARG BALENA_ARCH=%%BALENA_ARCH%%
-#FROM balenalib/$BALENA_ARCH-debian:bullseye
+ARG BALENA_ARCH=%%BALENA_ARCH%%
+FROM balenalib/$BALENA_ARCH-debian:bullseye
 # mentions of the install_packages script need to be replaced
 # with apt-get equivalents
 
 # Generic preamble:
-FROM debian:bullseye
+#FROM debian:bullseye
 RUN apt-get -y update ; apt-get -y upgrade ; apt-get -y install apt-utils
 
 ENV DEBIAN_FRONTEND=noninteractive
@@ -27,9 +27,9 @@ RUN apt-get -y --no-install-recommends install \
 
 WORKDIR /opt/xserver
 
-COPY src/xinitrc /root/.xinitrc
+COPY ./xinitrc /root/.xinitrc
 
-COPY src/entry.sh src/config.sh VERSION /opt/xserver/
+COPY ./entry.sh ./config.sh VERSION /opt/xserver/
 
 ENTRYPOINT  ["/bin/bash", "/opt/xserver/entry.sh"]
 
