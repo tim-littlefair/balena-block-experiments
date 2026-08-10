@@ -1,0 +1,19 @@
+version: "2.1"
+volumes:
+  xserver:
+services:
+  xserver:
+    build: ./xserver-server-block
+    restart: always
+    privileged: true
+    volumes:
+      - 'xserver:/tmp/.X11-unix'
+  glxgears:
+    build: ./glxgears
+    restart: always
+    #devices:
+    #  - /dev/dri
+    group_add:
+      - video
+    volumes:
+      - 'xserver:/tmp/.X11-unix'

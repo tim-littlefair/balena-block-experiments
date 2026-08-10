@@ -1,0 +1,6 @@
+xhost +local:root
+xset s off -dpms
+
+bash /opt/xserver/config.sh
+
+matchbox-window-manager -use_titlebar no

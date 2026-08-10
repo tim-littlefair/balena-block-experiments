@@ -1,0 +1,12 @@
+FROM balenalib/%%BALENA_MACHINE_NAME%%-debian:bullseye
+
+RUN install_packages \
+    x11-apps \
+    mesa-utils \
+    mesa-utils-extra
+
+COPY entry.sh /
+
+ENTRYPOINT  ["bash", "entry.sh"]
+
+ENV DISPLAY=:0
