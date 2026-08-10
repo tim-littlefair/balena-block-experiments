@@ -8,8 +8,8 @@ services:
     privileged: true
     volumes:
       - 'xserver:/tmp/.X11-unix'
-  glxgears:
-    build: ./glxgears
+  luakit:
+    build: ./luakit
     restart: always
     #devices:
     #  - /dev/dri
