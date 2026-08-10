@@ -1,3 +1,6 @@
 [submodule "upstream-references/xserver-v0.2.0-archived"]
 	path = upstream-references/xserver-v0.2.0-archived
 	url = https://github.com/balena-labs-projects/xserver
+[submodule "upstream-references/audio-v0.5.6"]
+	path = upstream-references/audio-v0.5.6
+	url = https://github.com/balena-io-experimental/audio
