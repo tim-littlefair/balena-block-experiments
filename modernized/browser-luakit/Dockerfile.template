@@ -1,0 +1,22 @@
+FROM bh.cr/balenalabs/browser-aarch64
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get -y update ; apt-get -y upgrade ; apt-get -y install apt-utils curl
+
+RUN apt-get -y remove chromium
+RUN apt-get -y autoremove
+
+RUN apt-get install -y luakit
+
+WORKDIR /usr/app/src
+
+COPY ./start.sh /usr/app/src
+
+ENV CURSOR=true \
+    UDEV=on \
+    FORCE_DISPLAY=:0
+
+CMD ["bash", "/usr/app/src/start.sh"]
+
+
