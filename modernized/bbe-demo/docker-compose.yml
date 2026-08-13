@@ -1,0 +1,39 @@
+version: "2.1"
+volumes:
+  xserver:
+services:
+  browser-luakit:
+    build: ./browser-luakit
+    privileged: true # required for UDEV to find plugged in peripherals such as a USB mouse
+    labels:
+      io.balena.features.dbus: '1'
+      io.balena.features.kernel-modules: '1'
+    volumes:
+      - 'xserver:/tmp/.X11-unix'
+    environment:
+      - 'DBUS_SYSTEM_BUS_ADDRESS=unix:path=/host/run/dbus/system_bus_socket'
+    # This block is intended as a basic lower-CPU-demand substitute for the 
+    # Chromium-based browser block published by Balena to BalenaHub and GitHub:
+    # + https://hub.balena.io/blocks/1916869/browser-aarch64
+    # + https://github.com/balena-io-experimental/browser
+    # At some time in the future I may extend it to include the management
+    # and debugging capabilities of the upstream codebase it modifies
+    #ports:
+    #- '5011' # management API (optional)
+    #- '35173' # Chromium debugging port (optional)
+    #volumes:
+    #- 'settings:/data'
+  # Presently, the browser-luakit block runs the processes for the 
+  # X-Windows server and the Luakit browser in the same container.
+  # At some time in the future the I hope that this project will contain 
+  # a re-usable X-Windows server block which can be used alongside 
+  # an X-Windows client process running in a separate block.
+  # When the server block is available, a separate block containing 
+  # Luakit only will be added to the demo.
+  #luakit:
+  #  build: ./luakit
+  #  restart: never
+  #  group_add:
+  #    - video
+  #  volumes:
+  #    - 'xserver:/tmp/.X11-unix'
