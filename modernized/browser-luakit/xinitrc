@@ -1,0 +1,15 @@
+#!/bin/sh
+
+echo DISPLAY=$DISPLAY
+ls -l /var/log/X*.log 
+echo starting WM
+matchbox-window-manager &
+wm_pid=$!
+echo WM started
+sleep 3
+echo starting LK
+luakit
+kill $wm_pid
+
+
+
