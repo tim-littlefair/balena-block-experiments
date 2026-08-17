@@ -12,6 +12,7 @@ services:
       - 'xserver:/tmp/.X11-unix'
     environment:
       - 'DBUS_SYSTEM_BUS_ADDRESS=unix:path=/host/run/dbus/system_bus_socket'
+      - 'LAUNCH_URL=https://heretical-camelid.net'
     # This block is intended as a basic lower-CPU-demand substitute for the 
     # Chromium-based browser block published by Balena to BalenaHub and GitHub:
     # + https://hub.balena.io/blocks/1916869/browser-aarch64

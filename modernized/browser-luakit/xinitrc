@@ -12,10 +12,9 @@ echo WM started
 xset -dpms
 xset s off
 
-
 sleep 3
 echo starting LK
-luakit
+luakit --uri=$LAUNCH_URL
 
 kill $wm_pid
 

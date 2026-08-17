@@ -11,8 +11,14 @@ dpkg-reconfigure xserver-xorg-legacy
 
 # check if display number envar was set
 if [[ -z "$DISPLAY_NUM" ]]
-  then
+then
     export DISPLAY_NUM=0
+fi
+
+# check if launch URL envvar was set
+if [[ -z "$LAUNCH_URL" ]]
+then
+  export LAUNCH_URL=https://github.com/tim-littlefair/balena-block-experiments
 fi
 
 # set whether to show a cursor or not
