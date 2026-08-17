@@ -6,9 +6,15 @@ echo starting WM
 matchbox-window-manager &
 wm_pid=$!
 echo WM started
+
+# Disable power management settings which cause screen to go 
+# blank or bring up screensaver
+xset -dpms
+xset s off
+
+
 sleep 3
 echo starting LK
-
 luakit
 
 kill $wm_pid
