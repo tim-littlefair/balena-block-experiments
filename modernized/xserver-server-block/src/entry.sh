@@ -3,7 +3,15 @@
 # kill previous x11 sockets that have persisted
 rm -r /tmp/.X11-unix 2>/dev/null
 
-/usr/bin/entry.sh echo "Running balena base image entrypoint..."
+uuid7=$(echo $BALENA_DEVICE_UUID | cut -c 1-7)
+#hostname uuid7
+cat /etc/hostname 
+cat /etc/hosts
+
+
+echo Running base image entry.sh
+/bin/bash /opt/xserver/balenalib-xserver-entry.sh echo "Running balena base image entrypoint..."
+echo Base image entry.sh has run
 
 echo "Setting initial display to FORCE_DISPLAY - $FORCE_DISPLAY"
 
@@ -30,9 +38,10 @@ then
 	fi
 fi
 
+DISPLAY=$FORCE_DISPLAY xauth -n
 if [ "$CURSOR" = true ];
 then
-    exec startx -- $FORCE_DISPLAY
+    exec startx $FORCE_DISPLAY
 else
-    exec startx -- $FORCE_DISPLAY -nocursor
+    exec startx $FORCE_DISPLAY -nocursor
 fi
