@@ -11,7 +11,6 @@ RUN apt-get -y update ; apt-get -y upgrade
 # warnings about its absence
 RUN apt-get -y install apt-utils
 
-
 # The first group of packages to be installed exactly matches the
 # list of packages explicitly installed in the Dockerfile.template
 # of balenalib-based upstream xserver v0.2.0
@@ -46,15 +45,17 @@ ARG XSERVER_INSTALL_CHROMIUM_PACKAGES="\
 "
 
 RUN apt-get -y --no-install-recommends install \
-    ${XSERVER_DOCKERFILE_PACKAGES} ${XSERVER_INSTALL_CHROMIUM_PACKAGES}
+    $XSERVER_DOCKERFILE_PACKAGES $XSERVER_INSTALL_CHROMIUM_PACKAGES
 
 WORKDIR /opt/xserver
 
 COPY src/xinitrc /root/.xinitrc
+RUN chmod a+x /root/.xinitrc
 
 COPY src/entry.sh src/config.sh src/balenalib-xserver-entry.sh VERSION /opt/xserver/
 
 ENTRYPOINT  ["/bin/bash", "/opt/xserver/entry.sh"]
+
 
 ENV CURSOR=true \
     UDEV=on \

@@ -1,9 +1,7 @@
 echo xintrc running
-echo xinitrc continuing
-xhost +local:root
 xset s off -dpms
-bash /opt/xserver/config.sh
-matchbox-window-manager -use_titlebar no &
+#bash /opt/xserver/config.sh
+matchbox-window-manager -use_titlebar yes -use_desktop_mode decorated &
 mwm_pid=$!
 echo starting xterm
 xterm
